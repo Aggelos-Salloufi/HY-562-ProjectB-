@@ -1,6 +1,6 @@
 """Run the gold queries on the endpoint and keep the questions that work.
 
-    python -m sumqa.gold --bench data/benchmarks/qald9plus_test.jsonl --endpoint $DBPEDIA_ENDPOINT
+    python -m sumqa.gold --bench data/benchmarks/sciqa_test.jsonl --endpoint $ORKG_ENDPOINT
 
 The gold answers are recomputed on the course endpoint, so that gold and predicted
 queries run on exactly the same KG version. Questions whose gold query fails or
@@ -18,14 +18,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bench", required=True)
     ap.add_argument("--endpoint", required=True)
-    ap.add_argument("--kg", help="record the graph used for these gold answers")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--timeout", type=float, default=60)
     a = ap.parse_args()
     cli = SparqlClient(a.endpoint, timeout=a.timeout)
     qs = list(read_jsonl(a.bench))
-    if a.kg:
-        qs = [{**q, "kg": a.kg} for q in qs]
     with ThreadPoolExecutor(a.workers) as ex:
         res = list(ex.map(lambda q: cli.query(q["sparql"]), qs))
     keep, drop = [], []

@@ -1,8 +1,8 @@
 """Counterfactual ablation (RQ3): which context lines does the model need?
 
-    python -m sumqa.ablation --run runs/B1/qald9plus_test__strong__1000__ollama-qwen2.5-coder-7b.jsonl \
-        --bench data/benchmarks/qald9plus_test.gold.jsonl --kg dbpedia2016 \
-        --summary runs/B1/strong_dbpedia.json --questions 40
+    python -m sumqa.ablation --run runs/B1/sciqa_test__strong__1000__ollama-qwen2.5-coder-7b.jsonl \
+        --bench data/benchmarks/sciqa_test.gold.jsonl --kg orkg2023 \
+        --summary runs/B1/strong_orkg.json --questions 40
 
 For each of N questions that the run answered correctly, the context is split into
 at most --blocks blocks of consecutive lines; each block is removed in turn, the

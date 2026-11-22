@@ -22,8 +22,7 @@ services:
     environment:
       JUPYTER_TOKEN: "hy562"
       KAFKA_BOOTSTRAP: "kafka:9092"
-      DBPEDIA_ENDPOINT: "oxigraph:data/kg/dbpedia2022/store"
-      DBPEDIA_KG: "dbpedia2022"
+      ORKG_ENDPOINT: "oxigraph:data/kg/orkg2023/store"
       DBLP_ENDPOINT: "oxigraph:data/kg/dblp2022/store"
       OLLAMA_HOST: "http://host.docker.internal:11435"
     volumes:

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# QALD-9-plus and LC-QuAD 1.0 are already in data/benchmarks/raw. This script adds DBLP-QuAD
-# from the archive used by Hugging Face and then converts all benchmarks.
+# SciQA is downloaded by get_data.py. This script adds DBLP-QuAD from its
+# original archive and converts the active benchmarks.
 #   bash scripts/download_benchmarks.sh
 set -euo pipefail
 RAW=data/benchmarks/raw

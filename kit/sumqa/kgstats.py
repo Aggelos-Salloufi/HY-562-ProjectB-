@@ -1,6 +1,6 @@
 """Class and property counts of a KG (PySpark). Used to order the schema baselines.
 
-    python -m sumqa.kgstats --out data/kg/dbpedia2016/counts.json "data/kg/dbpedia2016/raw/*.ttl.bz2"
+    python -m sumqa.kgstats --out data/kg/orkg2023/counts.json "data/kg/orkg2023/raw/*.nt"
     python -m sumqa.kgstats --out data/kg/dblp2022/counts.json data/kg/dblp2022/raw/dblp.nt.gz
 
 Writes {"classes": {iri: instances}, "properties": {iri: triples}, "triples": n}.
@@ -15,7 +15,8 @@ from pyspark.sql import functions as F
 
 RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
 NT_REGEX = r'^\s*(<[^>]*>|_:\S+)\s+<([^>]*)>\s+(.*?)\s*\.\s*$'
-OBJ_LIT = r'^"((?:[^"\\]|\\.)*)"(?:@([A-Za-z0-9-]+)|\^\^<([^>]*)>)?$'
+# Possessive repetitions avoid recursive backtracking on long ORKG abstracts.
+OBJ_LIT = r'^"((?:[^"\\]++|\\.)*+)"(?:@([A-Za-z0-9-]+)|\^\^<([^>]*)>)?$'
 
 
 def load_triples(spark, paths):

@@ -1,15 +1,15 @@
 """Load a KG into a local Oxigraph store (an embedded SPARQL engine, `pip install pyoxigraph`).
 
-    python -m sumqa.kgstore --store data/kg/dbpedia2016/store data/kg/dbpedia2016/raw/*.ttl.bz2 data/kg/dbpedia2016/raw/dbpedia_2016-10.nt
+    python -m sumqa.kgstore --store data/kg/orkg2023/store data/kg/orkg2023/raw/*.nt
     python -m sumqa.kgstore --store data/kg/dblp2022/store data/kg/dblp2022/raw/dblp.nt.gz
 
-Then use the endpoint `oxigraph:data/kg/dbpedia2016/store` in every command of the kit
-(for example `export DBPEDIA_ENDPOINT=oxigraph:data/kg/dbpedia2016/store`).
+Then use the endpoint `oxigraph:data/kg/orkg2023/store` in every command of the kit
+(for example `export ORKG_ENDPOINT=oxigraph:data/kg/orkg2023/store`).
 No server, no Docker: the store is a folder on disk that the kit opens read-only.
 
 Files may be .nt, .ttl, .nq, plain or compressed (.bz2, .gz). Malformed triples are
-skipped (lenient mode). Loading prints its progress; DBpedia takes tens of minutes and
-a few tens of GB of disk. Run it once per team member machine (or copy the folder).
+skipped (lenient mode). Large graphs can need many GB of disk and long loading
+times. Run it once per team member machine (or copy the prepared folder).
 """
 import argparse
 import bz2
