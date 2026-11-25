@@ -40,7 +40,11 @@ bash scripts/download_benchmarks.sh
 
 The source check must show four OK lines. Downloads resume and are checksum
 verified; `data/kg/MANIFEST.tsv` records URLs, byte counts and MD5 values.
-The manifest is tracked even though the graph files are ignored.
+The manifest, per-graph `counts.json`, `schema_elements.jsonl` and folder READMEs
+are tracked. The large source dumps, query stores and Parquet stay local. After
+cloning, download/build those files with the commands below, or copy a teammate's
+complete prepared `data/kg/dblp2022/` and `data/kg/orkg2023/` folders through shared
+storage. Copy only when no process is writing to the stores.
 
 ## 4. Graph preparation
 

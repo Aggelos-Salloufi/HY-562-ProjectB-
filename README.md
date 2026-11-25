@@ -37,6 +37,13 @@ Follow [kit/SETUP.md](kit/SETUP.md) for the current commands. Active graph IDs a
 by Git; the source and checksum manifest [MANIFEST.tsv](kit/data/kg/MANIFEST.tsv)
 is included for comparison across teams.
 
+Both graph folders include tracked setup metadata:
+[DBLP](kit/data/kg/dblp2022/README.md) and
+[ORKG](kit/data/kg/orkg2023/README.md). Their `counts.json` and
+`schema_elements.jsonl` files are included in Git. A clone still needs the raw
+data, query stores and Parquet: follow the setup commands to download/build them,
+or copy the complete prepared folders from a teammate using shared storage.
+
 [SETUP_REPORT.txt](kit/SETUP_REPORT.txt) records the latest checks. The short model
 run is saved in [setup_smoke.jsonl](kit/results/setup_smoke.jsonl) and
 [setup_smoke.csv](kit/results/setup_smoke.csv). Gold and dropped-question files

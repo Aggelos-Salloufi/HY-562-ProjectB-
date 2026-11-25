@@ -14,7 +14,9 @@ data-update announcement is [DATA_UPDATE.md](DATA_UPDATE.md).
 
 `python get_data.py projectB` downloads the official files, verifies published
 checksums and writes `data/kg/MANIFEST.tsv`. Commit the manifest and setup report.
-Large graph files and model weights stay outside Git.
+Each graph folder's README, counts and schema are included in Git. Large graph
+files and model weights stay outside Git; teammates download/build them with the
+setup commands or copy the complete prepared graph folders through shared storage.
 
 ## Pipeline
 
