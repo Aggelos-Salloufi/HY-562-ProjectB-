@@ -2,13 +2,13 @@
 
 Examples
   # baselines (every team runs these first)
-  python -m sumqa.run --bench data/benchmarks/sciqa_test.gold.jsonl --kg orkg2023 \
+  python -m sumqa.run --bench data/benchmarks/qald9plus_test.gold.jsonl --kg dbpedia2016 \
       --context ontology --budget 1000 --model ollama:qwen2.5-coder:7b --team B1
   python -m sumqa.run ... --context retrieval --budget 1000 ...
   # a summary (B1, B2)
-  python -m sumqa.run ... --context summary --summary runs/B1/strong_orkg.json --variant strong
+  python -m sumqa.run ... --context summary --summary runs/B1/strong_dbpedia.json --variant strong
   # question-specific lines (B3)
-  python -m sumqa.run ... --context lines --lines runs/B3/slices_sciqa_1000.jsonl --variant slice
+  python -m sumqa.run ... --context lines --lines runs/B3/slices_qald_1000.jsonl --variant slice
 
 Output: runs/<team>/<bench>__<variant>__<budget>__<model>.jsonl, one record per question.
 Score it with sumqa.score.
@@ -29,9 +29,9 @@ from .sparql import SparqlClient
 from .tokens import COUNTER, count_tokens
 
 KG_INFO = {
-    "orkg2023": {"name": "the Open Research Knowledge Graph (ORKG), dump of 14 February 2023",
-                 "prefixes": ["orkgr", "orkgc", "orkgp", "rdf", "rdfs", "xsd"], "endpoint_env": "ORKG_ENDPOINT",
-                 "schema": "data/kg/orkg2023/schema_elements.jsonl", "shots": "data/benchmarks/sciqa_train.jsonl"},
+    "dbpedia2016": {"name": "DBpedia (2016-10 release)", "prefixes": ["dbo", "dbr", "dbp", "rdf", "rdfs", "xsd", "foaf"],
+                    "endpoint_env": "DBPEDIA_ENDPOINT", "schema": "data/kg/dbpedia2016/schema_elements.jsonl",
+                    "shots": "data/benchmarks/qald9plus_train.jsonl"},
     "dblp2022": {"name": "the dblp computer science bibliography KG (2022-08 release)",
                  "prefixes": ["dblp", "rdf", "rdfs", "xsd"], "endpoint_env": "DBLP_ENDPOINT",
                  "schema": "data/kg/dblp2022/schema_elements.jsonl", "shots": "data/benchmarks/dblpquad_train.jsonl"},

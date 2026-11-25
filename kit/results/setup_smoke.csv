@@ -1,2 +1,0 @@
-team,variant,context,benchmark,kg,budget,model,shots,token_counter,n,accuracy,macro_precision,macro_recall,macro_f1,mean_context_tokens,mean_prompt_tokens,n_correct,n_partial,n_wrong,n_empty,n_error,n_no_query
-setup,retrieval,retrieval,sciqa_test,orkg2023,1000,ollama:qwen2.5-coder:7b,3,cl100k,10,0.3,0.3,0.3,0.3,923.3,2234.0,3,0,0,4,3,0

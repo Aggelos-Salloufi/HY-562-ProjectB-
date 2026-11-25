@@ -1,6 +1,6 @@
 """Run the gold queries on the endpoint and keep the questions that work.
 
-    python -m sumqa.gold --bench data/benchmarks/sciqa_test.jsonl --endpoint $ORKG_ENDPOINT
+    python -m sumqa.gold --bench data/benchmarks/qald9plus_test.jsonl --endpoint $DBPEDIA_ENDPOINT
 
 The gold answers are recomputed on the course endpoint, so that gold and predicted
 queries run on exactly the same KG version. Questions whose gold query fails or

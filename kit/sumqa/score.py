@@ -1,10 +1,10 @@
 """Score a run and append one row to the shared results table.
 
-    python -m sumqa.score runs/B1/sciqa_test__strong__1000__ollama-qwen2.5-coder-7b.jsonl \
+    python -m sumqa.score runs/B1/qald9plus_test__strong__1000__ollama-qwen2.5-coder-7b.jsonl \
         --results results/results_B.csv
 
 Per question: precision, recall and F1 of the answer set against the gold answers
-(answer-set scoring; for ASK queries the answer set is {"true"} or {"false"}), and one outcome:
+(QALD style; for ASK queries the answer set is {"true"} or {"false"}), and one outcome:
   no_query      no SPARQL in the model output
   error         the query fails (syntax error, unknown prefix, timeout)
   empty         the query runs and returns nothing

@@ -15,12 +15,12 @@ the "lines" provider of run.py.
 
 Summary file format (JSON), written by the teams' PySpark code:
 {
-  "kg": "orkg2023", "kind": "strong", "team": "B1",
-  "nodes": [{"id": "n1", "classes": ["http://orkg.org/orkg/class/Paper"], "size": 1234,
-             "properties": ["http://orkg.org/orkg/predicate/P31", ...]}],     # optional
-  "edges": [{"source": "n1", "property": "http://orkg.org/orkg/predicate/P31",
+  "kg": "dbpedia2016", "kind": "strong", "team": "B1",
+  "nodes": [{"id": "n1", "classes": ["http://dbpedia.org/ontology/Person"], "size": 1234,
+             "properties": ["http://dbpedia.org/ontology/birthDate", ...]}],     # optional
+  "edges": [{"source": "n1", "property": "http://dbpedia.org/ontology/birthPlace",
              "target": "n2", "count": 4567}],
-  "attributes": [{"node": "n1", "property": "http://orkg.org/orkg/predicate/P29",
+  "attributes": [{"node": "n1", "property": "http://dbpedia.org/ontology/birthDate",
                   "datatype": "http://www.w3.org/2001/XMLSchema#date", "count": 900}]   # optional
 }
 A node without classes is described by its properties (as in weak and strong summaries).

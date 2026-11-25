@@ -12,8 +12,6 @@ from __future__ import annotations
 
 import json
 import os
-import subprocess
-import sys
 import threading
 import time
 
@@ -69,19 +67,17 @@ class SparqlClient:
     def _run(self, sparql: str) -> set[str]:
         if self._store is not None:
             try:
-                worker = subprocess.run(
-                    [sys.executable, os.path.join(os.path.dirname(__file__), "oxigraph_query.py")],
-                    input=json.dumps({"store": self.endpoint[len("oxigraph:"):], "query": sparql}),
-                    text=True, capture_output=True, timeout=self.timeout,
-                )
-            except subprocess.TimeoutExpired:
-                raise QueryError(f"timeout after {self.timeout:g}s") from None
-            if worker.returncode:
-                raise QueryError(worker.stderr.strip() or f"query worker exited {worker.returncode}")
-            result = json.loads(worker.stdout)
-            if "error" in result:
-                raise QueryError(result["error"])
-            return set(result["answers"])
+                r = self._store.query(sparql)
+                if isinstance(r, bool) or type(r).__name__ == "QueryBoolean":
+                    return {"true" if bool(r) else "false"}
+                out = set()
+                for sol in r:
+                    for v in sol:
+                        if v is not None:
+                            out.add(v.value)
+                return out
+            except Exception as e:
+                raise QueryError(f"{type(e).__name__}: {e}")
         if self._graph is not None:
             try:
                 with self._glock:
